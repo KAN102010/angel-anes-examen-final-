@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculo de compra</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='ejercicio1.css') }}">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Calculo de compras</h1>
+        <form method="POST">
+            <label for="nombre">Ingresa tu nombre:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre" required>
+
+            <label for="edad">Ingresa tu edad:</label>
+            <input type="number" id="edad" name="edad" placeholder="Ingrese su edad" required>
+
+            <label for="cantidad">Ingresa la cantidad de tarros de pintura a comprar:</label>
+            <input type="number" id="cantidad" name="cantidad" placeholder="Ingrese la cantidad" required>
+
+            <button type="submit">Calcular</button>
+        </form>
+
+        {% if resultado is not none %}
+            <div class="resultado">
+                <h2></h2>
+                <p>Nombre del cliente: <strong>{{ nombre }}</strong></p>
+                <p>Total sin descuento: <strong>${{ total_sin_descuento }}</strong></p>
+                <p>El total a pagar es de: <strong>${{ total_con_descuento }}</strong></p>
+            </div>
+        {% endif %}
+
+        {% if error is not none %}
+            <div class="error">
+                <p>{{ error }}</p>
+            </div>
+        {% endif %}
+    </div>
+    <footer>
+        <a href="{{ url_for('index') }}" class="button">Volver al Menú</a>
+    </footer>
+</body>
+</html>
